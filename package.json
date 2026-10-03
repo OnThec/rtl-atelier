@@ -1,0 +1,22 @@
+{
+  "name": "rtl-atelier",
+  "version": "1.6.0",
+  "description": "Adaptive, local-first bilingual typography and bidirectional text engine for Persian/Arabic + English on the modern web.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test",
+    "pretest": "node scripts/icons.js && node scripts/fonts.js && node scripts/bundle.js",
+    "icons": "node scripts/icons.js",
+    "fonts": "node scripts/fonts.js",
+    "bundle": "node scripts/bundle.js",
+    "package": "node scripts/package.js",
+    "build": "node scripts/icons.js && node scripts/fonts.js && node scripts/bundle.js && node scripts/package.js",
+    "smoke": "node tests/_smoke.js",
+    "verify": "npm run build && node --test && node tests/_smoke.js"
+  },
+  "license": "MIT"
+}

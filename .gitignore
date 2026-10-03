@@ -1,0 +1,30 @@
+# Dependencies and package-manager state
+node_modules/
+.npm/
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+
+# Generated build/release output
+dist/
+coverage/
+*.zip
+*.crx
+
+# Local/editor state
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.log
+.freebuff/
+
+# Local environment / credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key

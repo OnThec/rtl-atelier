@@ -1,0 +1,213 @@
+.rtlm-align {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+.rtlm-center {
+  direction: rtl !important;
+  text-align: center !important;
+}
+
+.rtlm-ltr {
+  direction: ltr !important;
+  unicode-bidi: isolate;
+}
+
+.rtlm-block-ltr {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: isolate;
+}
+
+.rtlm-align-ltr {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/*
+ * List & List Item Alignment for Persian RTL (both Auto & Forced RTL modes):
+ * Ensures ordered numbers (1., 2., 3.) and bullets (•) render on the right
+ * side with proper Persian padding and list-marker positioning.
+ */
+ol.rtlm-align,
+ul.rtlm-align,
+ol[dir="rtl"],
+ul[dir="rtl"],
+:is(ol, ul):has(li.rtlm-align),
+:is(ol, ul):has(li[dir="rtl"]) {
+  direction: rtl !important;
+  text-align: right !important;
+  padding-right: 2.2rem !important;
+  padding-left: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+li.rtlm-align,
+li[dir="rtl"] {
+  direction: rtl !important;
+  text-align: right !important;
+  list-style-position: outside !important;
+}
+
+li.rtlm-align::marker,
+li[dir="rtl"]::marker {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: inherit;
+}
+
+/* Support for pseudo-element markers and counter bullets (Tailwind / DeepSeek / Claude markdown) */
+li.rtlm-align::before,
+li[dir="rtl"]::before,
+:is(ol, ul):has(> li.rtlm-align) > li::before,
+:is(ol, ul):has(> li[dir="rtl"]) > li::before {
+  left: auto !important;
+  right: 0 !important;
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* DeepSeek, Claude & modern markdown flex/list items */
+.rtlm-align :is([class*="list-item"], [class*="listItem"], [role="listitem"]),
+:is([class*="list-item"], [class*="listItem"], [role="listitem"])[dir="rtl"],
+:is([class*="list-item"], [class*="listItem"], [role="listitem"]).rtlm-align,
+.ds-markdown ol:has(li.rtlm-align),
+.ds-markdown ul:has(li.rtlm-align),
+[class*="ds-markdown"] ol:has(li.rtlm-align),
+[class*="ds-markdown"] ul:has(li.rtlm-align) {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/*
+ * Font inheritance penetration:
+ * Ensures the chosen font reliably penetrates inner text containers (span, strong, em, a, etc.)
+ * that might otherwise be overridden by site-specific class rules, while strictly protecting
+ * monospace code, math formulas, and icon fonts.
+ */
+.rtlm-font :is(p, span, a, strong, em, b, i, small, h1, h2, h3, h4, h5, h6, li, button, input, textarea, select, label, td, th):not(:is(pre, code, kbd, samp, var, tt, [class*="code"], [class*="katex"], [class*="math"], [class*="latex"], .fa, .fas, .far, .fab, [class*="icon"], [class*="material-"])) {
+  font-family: inherit !important;
+}
+
+/*
+ * Global document & element structure when user selects forced RTL.
+ * The entire web page structure is optimized for Persian, like it was natively built for Persian:
+ * - Root document & body direction: rtl
+ * - Headings, paragraphs, quotes, and structural containers right-aligned with native Persian line-height
+ * - Neutralizes hardcoded dir="ltr" on application containers while strictly protecting code/math
+ * - Forms, inputs, and placeholders styled for Persian RTL
+ * - Lists indented properly from the right
+ * - Tables and cells aligned right
+ * - Code & math regions strictly protected in LTR
+ */
+html[data-rtlm-dir="rtl"],
+html[data-rtlm-dir="rtl"] body {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* All text containers right-aligned with comfortable Persian reading height */
+html[data-rtlm-dir="rtl"] :is(h1, h2, h3, h4, h5, h6, p, dl, dt, dd, blockquote, figure, figcaption, table, caption, form, fieldset, legend, article, section, nav, aside, header, footer, main, summary, label):not(:is(pre, code, kbd, samp, var, tt, [class*="code"], [class*="editor"], .cm-editor, .monaco-editor, svg, math, [class*="katex"], [class*="math"], [data-language])) {
+  direction: rtl !important;
+  text-align: right !important;
+  line-height: 1.68 !important;
+  letter-spacing: normal !important;
+}
+
+/* Neutralize hardcoded dir="ltr" on framework content wrappers (e.g. Next.js, React, chat bubbles) */
+html[data-rtlm-dir="rtl"] [dir="ltr"]:not(:is(pre, code, kbd, samp, var, tt, [class*="code"], [class*="editor"], .cm-editor, .monaco-editor, svg, math, [class*="katex"], [class*="math"], [data-language])) {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+html[data-rtlm-dir="rtl"] :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]):not([type="color"]):not([type="submit"]):not([type="reset"]):not([type="button"]), textarea, select, [contenteditable="true"]) {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+html[data-rtlm-dir="rtl"] input::placeholder,
+html[data-rtlm-dir="rtl"] textarea::placeholder {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+html[data-rtlm-dir="rtl"] :is(ul, ol) {
+  direction: rtl !important;
+  text-align: right !important;
+  padding-right: 1.8em !important;
+  padding-left: 0 !important;
+}
+
+html[data-rtlm-dir="rtl"] :is(ul, ol) > li {
+  direction: rtl !important;
+  text-align: right !important;
+  list-style-position: outside;
+}
+
+html[data-rtlm-dir="rtl"] :is(ul, ol) > li::marker {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+html[data-rtlm-dir="rtl"] :is(th, td, caption) {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* Strict code and formula isolation in RTL mode */
+html[data-rtlm-dir="rtl"] :is(pre, code, kbd, samp, var, tt, [class*="code"], [class*="katex"], [class*="math"], [class*="latex"], [class*="highlight"], [data-language], .cm-editor, .monaco-editor, .hljs) {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: isolate !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+  line-height: 1.45 !important;
+}
+
+html[data-rtlm-dir="rtl"] :is(pre, code, kbd, samp, var, tt, [class*="code"], [class*="katex"], [class*="math"], [class*="latex"]) * {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/*
+ * Global document & element structure when user selects forced LTR.
+ * The entire UI structure is optimized for English, and only the font is applied:
+ * - Native English LTR layout across all UI elements
+ * - Left alignment for text, forms, tables, and lists
+ */
+html[data-rtlm-dir="ltr"],
+html[data-rtlm-dir="ltr"] body {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+html[data-rtlm-dir="ltr"] :is(h1, h2, h3, h4, h5, h6, p, dl, dt, dd, blockquote, figure, figcaption, table, caption, form, fieldset, legend, article, section, nav, aside, header, footer, main, summary, label) {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+html[data-rtlm-dir="ltr"] :is(input, textarea, select, [contenteditable="true"]) {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+html[data-rtlm-dir="ltr"] :is(ul, ol) {
+  direction: ltr !important;
+  text-align: left !important;
+  padding-left: 2em !important;
+  padding-right: 0 !important;
+}
+
+html[data-rtlm-dir="ltr"] :is(th, td, caption) {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/*
+ * Font-injection stability guard: a custom page font must never seep into
+ * code/mono regions, where metric changes break alignment on complex sites.
+ * Keeps the browser-standard monospace stack regardless of the chosen face.
+ */
+.rtlm-font :is(pre, code, kbd, samp, var, tt, [class*="code"], [class*="katex"], [class*="math"], [class*="latex"], .cm-editor, .monaco-editor, .hljs) {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace !important;
+}

@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RTL Atelier</title>
+  <link rel="stylesheet" href="../../dist/fonts.ui.css" />
+  <link rel="stylesheet" href="design-system.css" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-tile" aria-hidden="true">
+          <img src="../../icons/icon-128.png" alt="" width="32" height="32" />
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">RTL Atelier</span>
+          <span class="brand-tag" data-i18n="app.tagline">Bilingual type intelligence</span>
+        </span>
+      </div>
+      <div class="header-actions">
+        <button class="health-chip" id="health-chip" type="button" title="System Health" aria-label="System Health">
+          <span class="health-dot" aria-hidden="true"></span>
+          <span class="health-text" id="health-text" data-i18n="status.healthy">Healthy</span>
+        </button>
+        <span class="brand-version" id="version-chip">v1.6</span>
+        <button
+          class="switch switch-master"
+          id="master-switch"
+          role="switch"
+          aria-checked="true"
+          data-i18n-aria="master.on"
+        >
+          <span class="switch-knob" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabs app-nav-tabs" id="app-nav-tabs" role="tablist" aria-label="Sections">
+      <button class="tab is-active" id="tab-btn-site" role="tab" aria-selected="true" data-view="site">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        <span data-i18n="tab.site">Site</span>
+      </button>
+      <button class="tab" id="tab-btn-typography" role="tab" aria-selected="false" data-view="typography">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+        <span data-i18n="tab.typography">Typography</span>
+      </button>
+      <button class="tab" id="tab-btn-sites" role="tab" aria-selected="false" data-view="sites">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+        <span data-i18n="tab.sites">Sites</span>
+      </button>
+      <button class="tab" id="tab-btn-settings" role="tab" aria-selected="false" data-view="settings">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span data-i18n="tab.settings">Settings</span>
+      </button>
+    </nav>
+
+    <main class="app-main">
+
+      <!-- ================= Site dashboard ================= -->
+      <section class="view" id="view-site" role="tabpanel" hidden>
+        <section class="card hero-card">
+          <div class="site-row">
+            <span class="favicon-well" id="favicon-well" hidden>
+              <img id="site-favicon" alt="" width="18" height="18" />
+            </span>
+            <div class="site-copy">
+              <h2 class="card-title" data-i18n="site.title">Current site</h2>
+              <p class="site-host" id="site-host">—</p>
+            </div>
+            <span class="pill" id="status-pill" data-tone="idle"></span>
+            <button class="switch" id="site-switch" role="switch" aria-checked="true" data-i18n-aria="site.switch">
+              <span class="switch-knob" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="hero-meter">
+            <div class="ring" id="coverage-ring" role="meter" aria-valuemin="0" aria-valuemax="100">
+              <span id="coverage-value">0%</span>
+            </div>
+            <div class="meter-copy">
+              <span class="meter-title" data-i18n="coverage.title">RTL coverage</span>
+              <span class="feature-desc" data-i18n="coverage.desc">Share of detected paragraphs that read right-to-left</span>
+            </div>
+          </div>
+
+          <div class="orientation-bar">
+            <span class="orientation-label" data-i18n="directionMode.label">Text orientation</span>
+            <div class="segmented segmented-compact" id="direction-segment" role="radiogroup" data-i18n-aria="directionMode.label">
+              <button class="segmented-item" data-value="auto" role="radio" aria-checked="true" data-i18n="directionMode.auto">Auto</button>
+              <button class="segmented-item" data-value="rtl" role="radio" aria-checked="false" data-i18n="directionMode.rtl">RTL</button>
+              <button class="segmented-item" data-value="ltr" role="radio" aria-checked="false" data-i18n="directionMode.ltr">LTR</button>
+            </div>
+          </div>
+
+          <dl class="site-stats">
+            <div class="stat" data-stat="paragraphs">
+              <dt data-i18n="stats.paragraphs">Paragraphs</dt>
+              <dd id="stat-paragraphs">0</dd>
+              <i class="bar" aria-hidden="true"><b></b></i>
+            </div>
+            <div class="stat" data-stat="edits">
+              <dt data-i18n="stats.edits">Text edits</dt>
+              <dd id="stat-edits">0</dd>
+              <i class="bar" aria-hidden="true"><b></b></i>
+            </div>
+            <div class="stat" data-stat="inputs">
+              <dt data-i18n="stats.inputs">Inputs</dt>
+              <dd id="stat-inputs">0</dd>
+              <i class="bar" aria-hidden="true"><b></b></i>
+            </div>
+          </dl>
+
+          <div class="action-row">
+            <button class="btn btn-ghost" id="reapply-btn" title="Re-apply">
+              <svg class="icon icon-reapply" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              <span data-i18n="reapply">Re-apply on this page</span>
+            </button>
+            <button class="btn btn-ghost" id="reset-stats-btn" title="Reset counters">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              <span data-i18n="action.resetStats">Reset counters</span>
+            </button>
+          </div>
+
+          <button class="btn btn-accent btn-block" id="activate-cta" hidden>
+            <span data-i18n="action.activateHere">Activate here</span>
+          </button>
+
+          <p class="hint" id="site-hint"></p>
+          <button class="fault-banner" id="fault-banner" type="button" hidden></button>
+        </section>
+
+        <!-- Active Enhancements & Live Page Capabilities Card -->
+        <div class="card site-enhancements-card" id="site-enhancements-card">
+          <div class="enhancements-head">
+            <div class="enhancements-title-row">
+              <span class="enhancements-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </span>
+              <span class="enhancements-title" data-i18n="site.activeEnhancements">Active enhancements</span>
+            </div>
+            <span class="badge badge-accent" id="site-adapter-badge">Universal BiDi Engine</span>
+          </div>
+
+          <div class="enhancements-grid">
+            <div class="enhancement-pill">
+              <span class="enhancement-dot" aria-hidden="true"></span>
+              <span data-i18n="site.bidiFlow">Smart BiDi Flow</span>
+            </div>
+            <div class="enhancement-pill">
+              <span class="enhancement-dot" aria-hidden="true"></span>
+              <span data-i18n="site.domObserver">Dynamic Stream Observer</span>
+            </div>
+            <div class="enhancement-pill">
+              <span class="enhancement-dot" aria-hidden="true"></span>
+              <span data-i18n="site.digitsZwnj">Digits & ZWNJ Engine</span>
+            </div>
+            <div class="enhancement-pill" id="site-font-active-pill">
+              <span class="enhancement-dot" aria-hidden="true"></span>
+              <span id="site-active-font-name">Font: Vazirmatn</span>
+            </div>
+          </div>
+
+          <div class="quick-font-row" id="quick-font-row">
+            <div class="quick-font-info">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+              <span class="quick-font-label" data-i18n="site.quickFont">Font scale</span>
+            </div>
+            <div class="stepper stepper-compact" id="site-font-stepper" data-target="pageFontSize" data-min="50" data-max="250" data-step="5">
+              <button type="button" class="stepper-btn" id="site-font-decrease" data-dir="-1" data-i18n-aria="size.decrease">−</button>
+              <output class="stepper-value" id="site-font-stepper-val">100%</output>
+              <button type="button" class="stepper-btn" id="site-font-increase" data-dir="1" data-i18n-aria="size.increase">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card diagnostics-promo-card" id="diagnostics-card">
+          <div class="diagnostics-promo-left">
+            <div class="diagnostics-promo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <div class="diagnostics-promo-text">
+              <div class="diag-promo-title-row">
+                <span class="card-title" data-i18n="diag.centerTitle">Diagnostics & Troubleshooting</span>
+                <span class="diag-status-pill" id="diag-promo-status-pill" data-status="healthy">
+                  <span class="diag-pulse-dot" aria-hidden="true"></span>
+                  <span id="diag-promo-status-label" data-i18n="status.healthy">Healthy</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-accent-subtle btn-compact" id="open-diagnostics-btn" type="button">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span data-i18n="diag.openCenter">Inspect & Fix</span>
+            <svg class="icon icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div id="diagnostics-output" hidden></div>
+        </div>
+
+        <div class="site-footer-hint">
+          <span class="kbd-pill"><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span>
+          <span data-i18n="footer.shortcut">Alt+Shift+X to toggle</span>
+        </div>
+      </section>
+
+      <!-- ================= Typography view ================= -->
+      <section class="view" id="view-typography" role="tabpanel" hidden>
+        <section class="card">
+          <h2 class="card-title" data-i18n="font.page.label">Page font</h2>
+          <div class="field">
+            <label class="field-label" for="font-select" data-i18n="font.family.label">Family</label>
+            <select class="select select-block" id="font-select"></select>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label class="field-label" for="weight-select" data-i18n="font.weight.label">Weight</label>
+              <select class="select select-block" id="weight-select"></select>
+            </div>
+            <div class="field">
+              <span class="field-label" data-i18n="size.page.label">Text size</span>
+              <div class="stepper" data-target="pageFontSize" data-min="50" data-max="250" data-step="5">
+                <button type="button" class="stepper-btn" data-dir="-1" data-i18n-aria="size.decrease">−</button>
+                <output class="stepper-value">100%</output>
+                <button type="button" class="stepper-btn" data-dir="1" data-i18n-aria="size.increase">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="feature-row scope-row">
+            <div class="feature-copy">
+              <span class="feature-label" data-i18n="font.scope.label">Applies to</span>
+            </div>
+            <div class="segmented" id="scope-segment" role="radiogroup" data-i18n-aria="font.scope.label">
+              <button class="segmented-item" data-value="rtl" role="radio" aria-checked="true" data-i18n="font.scope.rtl">RTL text</button>
+              <button class="segmented-item" data-value="readable" role="radio" aria-checked="false" data-i18n="font.scope.readable">All readable text</button>
+            </div>
+          </div>
+          <p class="feature-desc" id="font-desc"></p>
+        </section>
+
+        <details class="disclosure card-flat" id="advanced-typography">
+          <summary><span data-i18n="typography.advanced">Advanced typography</span></summary>
+          <div class="feature-list" id="feature-list"></div>
+          <div class="feature-row" id="digits-row">
+            <div class="feature-copy">
+              <span class="feature-label" data-i18n="digits.label">Digits in Persian text</span>
+              <span class="feature-desc" data-i18n="digits.desc">Context-aware conversion of 0-9 ⇄ ۰-۹</span>
+            </div>
+            <div class="segmented" id="digits-segment" role="radiogroup" data-i18n-aria="digits.label">
+              <button class="segmented-item" data-value="keep" role="radio" aria-checked="true" data-i18n="digits.keep">Keep</button>
+              <button class="segmented-item" data-value="latin" role="radio" aria-checked="false" data-i18n="digits.latin">Latin</button>
+              <button class="segmented-item" data-value="persian" role="radio" aria-checked="false" data-i18n="digits.persian">Farsi</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="disclosure card-flat" id="custom-fonts-disclosure">
+          <summary>
+            <span data-i18n="fonts.custom">Custom fonts</span>
+            <span class="badge" id="custom-fonts-count">0</span>
+          </summary>
+          <div class="custom-fonts" id="custom-font-dropzone">
+            <ul class="custom-font-list" id="custom-font-list"></ul>
+            <div class="drop-target-box" id="drop-target-box">
+              <span class="drop-hint" data-i18n="fonts.dropHint">Drop font files (.woff2, .woff, .ttf, .otf) here or</span>
+            </div>
+            <div class="custom-font-actions">
+              <button class="btn btn-ghost btn-block" id="upload-font-btn">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span data-i18n="fonts.upload">Upload font</span>
+              </button>
+              <button class="btn btn-ghost btn-compact" id="open-tab-btn" type="button" data-i18n-title="fonts.openTab" title="Open in new tab">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </button>
+            </div>
+            <input type="file" id="font-file" accept=".ttf,.otf,.woff,.woff2" multiple hidden />
+          </div>
+        </details>
+
+        <section class="card scratchpad-card">
+          <div class="card-head">
+            <h2 class="card-title" data-i18n="scratchpad.title">Instant formatter</h2>
+            <div class="card-head-actions">
+              <button class="chip" id="scratchpad-copy" data-i18n="scratchpad.copy" title="Copy formatted text">Copy</button>
+              <button class="chip chip-ghost" id="scratchpad-reset" data-i18n="scratchpad.reset" title="Reset to sample">Sample</button>
+            </div>
+          </div>
+          <div class="scratchpad-body">
+            <textarea class="scratchpad-input" id="scratchpad-input" rows="2" placeholder="Type or paste mixed Persian + English text here..." data-i18n-placeholder="scratchpad.placeholder"></textarea>
+            <div class="preview-box" id="preview-box" dir="auto" lang="fa">
+              <p id="preview-text"></p>
+            </div>
+          </div>
+          <p class="preview-note" id="preview-note"></p>
+        </section>
+      </section>
+
+      <!-- ================= Sites view ================= -->
+      <section class="view" id="view-sites" role="tabpanel" hidden>
+        <section class="card activation-card">
+          <div class="card-head">
+            <h2 class="card-title" data-i18n="activation.title">Activation</h2>
+            <span class="activation-mode-badge" id="activation-mode-badge">Smart Mode</span>
+          </div>
+          <p class="activation-desc" id="activation-desc"></p>
+          <div class="segmented segmented-block" id="activation-segment" role="radiogroup" data-i18n-aria="activation.title">
+            <button class="segmented-item" data-value="targeted" role="radio" aria-checked="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span data-i18n="activation.smart">Smart</span>
+            </button>
+            <button class="segmented-item" data-value="everywhere" role="radio" aria-checked="false">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span data-i18n="activation.everywhere">Everywhere</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Supported Built-in Platforms Hub -->
+        <section class="card presets-card" id="presets-card">
+          <div class="card-head">
+            <div class="presets-head-title">
+              <h2 class="card-title" data-i18n="sites.presets">Built-in platforms</h2>
+              <span class="badge badge-accent" id="presets-count">0</span>
+            </div>
+            <div class="presets-search-wrap">
+              <input type="search" class="presets-search-input" id="preset-search-input"
+                     placeholder="Search platforms…" data-i18n-placeholder="sites.filterPlaceholder"
+                     autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+          <div class="chip-grid presets-grid-scrollable" id="preset-grid"></div>
+        </section>
+
+        <!-- Custom Domains Manager -->
+        <section class="card custom-domains-card" id="custom-domains-card">
+          <div class="card-head">
+            <h2 class="card-title" data-i18n="sites.manage">Custom domains</h2>
+            <span class="badge" id="sites-count">0</span>
+          </div>
+
+          <button class="btn btn-accent-subtle btn-compact add-current-btn" id="add-current-domain-btn" type="button" hidden>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span id="add-current-domain-label">Add current site</span>
+          </button>
+
+          <form class="site-add" id="site-add-form">
+            <input type="text" class="text-input" id="site-add-input"
+                   placeholder="example.com" autocomplete="off" spellcheck="false"
+                   data-i18n-placeholder="sites.addPlaceholder" data-i18n-aria="sites.addAria" />
+            <button type="submit" class="btn btn-accent btn-compact" data-i18n="sites.add">Add</button>
+          </form>
+          <ul class="site-list" id="site-list"></ul>
+        </section>
+
+        <!-- Live Active Tabs Sessions -->
+        <section class="card active-sites-card" id="active-sites-card">
+          <div class="card-head">
+            <h2 class="card-title" data-i18n="sites.activeTitle">Active sites</h2>
+            <span class="live-dot" aria-hidden="true"></span>
+          </div>
+          <ul class="active-site-list" id="active-site-list"></ul>
+        </section>
+      </section>
+
+      <!-- ================= Settings view ================= -->
+      <section class="view" id="view-settings" role="tabpanel" hidden>
+        <section class="card">
+          <h2 class="card-title" data-i18n="interface.title">Interface</h2>
+          <div class="feature-row">
+            <div class="feature-copy"><span class="feature-label" data-i18n="lang.label">Language</span></div>
+            <select class="select" id="lang-select" data-i18n-aria="lang.label">
+              <option value="auto" data-i18n="lang.auto">Auto</option>
+              <option value="en">English</option>
+              <option value="fa">فارسی</option>
+            </select>
+          </div>
+          <div class="feature-row">
+            <div class="feature-copy">
+              <span class="feature-label" data-i18n="font.ui.label">Extension font</span>
+              <span class="feature-desc" data-i18n="font.ui.desc">Typeface of this panel — independent from page font</span>
+            </div>
+            <select class="select" id="ui-font-select"></select>
+          </div>
+          <div class="feature-row">
+            <div class="feature-copy">
+              <span class="feature-label" data-i18n="font.ui.weight.label">Panel weight</span>
+              <span class="feature-desc" data-i18n="font.ui.weight.desc">Text weight inside this panel</span>
+            </div>
+            <select class="select select-sm" id="ui-weight-select">
+              <option value="auto" data-i18n="weight.auto">Auto</option>
+              <option value="300">300</option>
+              <option value="400">400</option>
+              <option value="500">500</option>
+              <option value="600">600</option>
+              <option value="700">700</option>
+            </select>
+          </div>
+          <div class="feature-row">
+            <div class="feature-copy"><span class="feature-label" data-i18n="size.ui.label">Panel size</span></div>
+            <div class="stepper" data-target="uiFontSize" data-min="80" data-max="180" data-step="10">
+              <button type="button" class="stepper-btn" data-dir="-1" data-i18n-aria="size.decrease">−</button>
+              <output class="stepper-value">100%</output>
+              <button type="button" class="stepper-btn" data-dir="1" data-i18n-aria="size.increase">+</button>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-copy"><span class="feature-label" data-i18n="theme.label">Appearance</span></div>
+            <div class="segmented" id="theme-segment" role="radiogroup" data-i18n-aria="theme.label">
+              <button class="segmented-item" data-value="auto" role="radio" aria-checked="true" data-i18n="theme.auto">Auto</button>
+              <button class="segmented-item" data-value="light" role="radio" aria-checked="false" data-i18n="theme.light">Light</button>
+              <button class="segmented-item" data-value="dark" role="radio" aria-checked="false" data-i18n="theme.dark">Dark</button>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-copy">
+              <span class="feature-label" data-i18n="uiDirection.label">Panel orientation</span>
+              <span class="feature-desc" data-i18n="uiDirection.desc">Force panel layout direction or follow language</span>
+            </div>
+            <div class="segmented" id="ui-direction-segment" role="radiogroup" data-i18n-aria="uiDirection.label">
+              <button class="segmented-item" data-value="auto" role="radio" aria-checked="true" data-i18n="uiDirection.auto">Auto</button>
+              <button class="segmented-item" data-value="rtl" role="radio" aria-checked="false" data-i18n="uiDirection.rtl">RTL</button>
+              <button class="segmented-item" data-value="ltr" role="radio" aria-checked="false" data-i18n="uiDirection.ltr">LTR</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title" data-i18n="data.title">Your data</h2>
+          <button class="list-action" id="export-btn">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="action.export">Export settings</span>
+          </button>
+          <button class="list-action" id="import-btn">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span data-i18n="action.import">Import settings</span>
+          </button>
+          <button class="list-action list-action-danger" id="reset-btn">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            <span data-i18n="action.reset">Reset everything</span>
+          </button>
+          <input type="file" id="import-file" accept="application/json" hidden />
+        </section>
+
+        <button class="btn btn-ghost btn-block" id="about-btn" data-i18n="action.about">About</button>
+      </section>
+    </main>
+  </div>
+
+  <!-- Replace / Skip duplicate-font dialog -->
+  <div class="modal-backdrop" id="dup-backdrop" hidden>
+    <div class="modal modal-sm" role="alertdialog" aria-modal="true" aria-labelledby="dup-title">
+      <h2 id="dup-title" data-i18n="fonts.replaceTitle">Replace this font?</h2>
+      <p class="modal-text" id="dup-desc"></p>
+      <div class="modal-actions modal-actions-end">
+        <button class="btn btn-ghost" id="dup-skip" data-i18n="fonts.skip">Skip</button>
+        <button class="btn btn-accent" id="dup-replace" data-i18n="fonts.replace">Replace</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="about-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="about-modal-title">
+      <div class="modal-head">
+        <img src="../../icons/icon-128.png" alt="" width="40" height="40" />
+        <div>
+          <h2 id="about-modal-title">RTL Atelier</h2>
+          <p data-i18n="about.tagline">Adaptive, local-first bilingual typography engine for Persian/Arabic + English.</p>
+        </div>
+      </div>
+      <ul class="modal-list">
+        <li data-i18n="about.local">Local-first. No analytics, no network calls — your text never leaves the page.</li>
+        <li data-i18n="about.reversible">Reversible. Every DOM edit is recorded and restored when you switch off.</li>
+        <li data-i18n="about.adapters">Adaptive. Purpose-built adapters for ChatGPT, Claude, Gemini and 20+ AI platforms.</li>
+        <li>
+          <span data-i18n="about.shortcuts">Shortcuts.</span>
+          <kbd>Alt+Shift+R</kbd> · <kbd>Alt+Shift+T</kbd>
+        </li>
+      </ul>
+      <div class="modal-actions">
+        <span class="modal-version" id="about-version"></span>
+        <button class="btn btn-accent" id="about-close" data-i18n="about.close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diagnostics & Troubleshooting Center Sheet -->
+  <div class="modal-backdrop diag-sheet-backdrop" id="errors-backdrop" hidden>
+    <div class="modal modal-lg diag-center-modal" role="dialog" aria-modal="true" aria-labelledby="errors-modal-title">
+      <div class="modal-head">
+        <div class="diag-header-text">
+          <div class="diag-title-row">
+            <div class="diag-title-group">
+              <button class="btn btn-ghost btn-icon btn-compact diag-back-btn" id="diag-back-btn" type="button" title="Back" aria-label="Back">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <h2 id="errors-modal-title" data-i18n="diag.centerTitle">Diagnostics & Troubleshooting</h2>
+            </div>
+            <span class="health-chip diag-modal-chip" id="diag-modal-health-chip">
+              <span class="health-dot" aria-hidden="true"></span>
+              <span class="health-text" id="diag-modal-health-text">Healthy</span>
+            </span>
+          </div>
+          <p class="modal-desc" id="errors-summary-text" data-i18n="diag.centerDesc">Live page inspection, font & CSP check, and instant fix</p>
+        </div>
+      </div>
+
+      <nav class="tabs diag-modal-tabs" id="diag-modal-tabs" role="tablist" aria-label="Diagnostics views">
+        <button class="diag-tab is-active" id="diag-tab-live" data-diag-view="live" role="tab" aria-selected="true">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-i18n="diag.tabLive">Live Inspection</span>
+        </button>
+        <button class="diag-tab" id="diag-tab-logs" data-diag-view="logs" role="tab" aria-selected="false">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          <span data-i18n="diag.tabLogs">Event Log</span>
+          <span class="badge" id="diag-tab-logs-count" hidden>0</span>
+        </button>
+      </nav>
+
+      <!-- Panel 1: Live Diagnosis & Fix -->
+      <div class="diag-panel" id="diag-panel-live">
+        <div class="diag-scrollable" id="diagnostics-live-view"></div>
+        <div class="diag-fix-actions">
+          <button class="btn btn-accent btn-block" id="diag-quick-fix-btn" type="button">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span data-i18n="diag.deepScanFix">Run Deep Scan & Quick Fix</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Panel 2: Event Logs & Export -->
+      <div class="diag-panel" id="diag-panel-logs" hidden>
+        <div class="errors-content">
+          <div class="errors-list" id="errors-list"></div>
+        </div>
+        <div class="log-footer-bar">
+          <div class="log-footer-status">
+            <span class="log-status-dot-ok" aria-hidden="true"></span>
+            <span class="log-footer-text" id="log-footer-text" data-i18n="diag.logBufferHint">Circular event buffer (bounded memory)</span>
+          </div>
+          <span class="log-buffer-badge" id="log-buffer-badge">100 max</span>
+        </div>
+      </div>
+
+      <div class="modal-actions diag-footer-actions">
+        <button class="btn btn-ghost btn-compact" id="copy-errors-btn" data-i18n="diag.copyReport">Copy Full Report</button>
+        <button class="btn btn-ghost btn-compact" id="clear-errors-btn" data-i18n="diag.clearErrors" hidden>Clear Log</button>
+        <button class="btn btn-accent btn-compact" id="errors-close" data-i18n="about.close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

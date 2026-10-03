@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="rtlaTile" x1="6" y1="4" x2="58" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8d72f6"/>
+      <stop offset="0.55" stop-color="#5f4de0"/>
+      <stop offset="1" stop-color="#3c2fae"/>
+    </linearGradient>
+    <linearGradient id="rtlaShine" x1="32" y1="4" x2="32" y2="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rtlaGlyph" x1="18" y1="16" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#c7f4ee"/>
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="16.5" fill="url(#rtlaTile)"/>
+  <rect x="3" y="3" width="58" height="58" rx="16.5" fill="url(#rtlaShine)"/>
+  <rect x="3.75" y="3.75" width="56.5" height="56.5" rx="15.75" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1.5"/>
+  <path d="M43.5 17.5v29" stroke="url(#rtlaGlyph)" stroke-width="5.6" stroke-linecap="round"/>
+  <path d="M33 36.5a9.6 9.6 0 1 1-19.2 0" stroke="url(#rtlaGlyph)" stroke-width="5.6" stroke-linecap="round"/>
+  <circle cx="23.4" cy="46.4" r="3.1" fill="url(#rtlaGlyph)"/>
+</svg>

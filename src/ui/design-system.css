@@ -1,0 +1,118 @@
+:root {
+  color-scheme: light;
+
+  --rtla-font: "Vazirmatn", "Segoe UI", "SF Pro Text", system-ui, -apple-system, sans-serif;
+  --rtla-font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", monospace;
+
+  /*
+   * Panel weight tokens — the user-facing "Panel weight" control retargets
+   * these from popup.js. Components must never hardcode font-weight: always
+   * derive from body (inherit), --rtla-fw-strong or --rtla-fw-heading, so a
+   * weight change reaches the entire panel consistently.
+   */
+  --rtla-fw-body: 400;
+  --rtla-fw-strong: 600;
+  --rtla-fw-heading: 700;
+
+  --rtla-accent-a: #7c5cf0;
+  --rtla-accent-b: #2cc9bb;
+  --rtla-accent-deep: #4f3ed4;
+  --rtla-accent-grad: linear-gradient(135deg, var(--rtla-accent-a), var(--rtla-accent-b));
+
+  --rtla-bg-glow-a: rgba(124, 92, 240, 0.06);
+  --rtla-bg-glow-b: rgba(44, 201, 187, 0.05);
+  --rtla-bg-a: #ffffff;
+  --rtla-bg-b: #ffffff;
+  --rtla-surface-solid: #ffffff;
+
+  --rtla-text: #1d2138;
+  --rtla-text-2: #545979;
+  --rtla-text-3: #8a90af;
+  --rtla-on-accent: #ffffff;
+
+  --rtla-surface: #ffffff;
+  --rtla-surface-flat: #f8fafc;
+  --rtla-surface-well: #f0f3fa;
+  --rtla-surface-hover: #f5f8ff;
+  --rtla-border: rgba(30, 35, 70, 0.09);
+  --rtla-border-inner: rgba(255, 255, 255, 1);
+  --rtla-divider: rgba(30, 35, 70, 0.07);
+
+  --rtla-well-shadow: inset 0 1px 2px rgba(30, 35, 70, 0.06);
+  --rtla-shadow-card: 0 1px 3px rgba(30, 35, 70, 0.04), 0 4px 14px rgba(30, 35, 70, 0.03);
+  --rtla-shadow-pop: 0 12px 32px rgba(21, 24, 48, 0.22), 0 4px 12px rgba(21, 24, 48, 0.12);
+  --rtla-shadow-knob: 0 1px 2px rgba(35, 39, 74, 0.22), 0 2px 6px rgba(35, 39, 74, 0.14);
+  --rtla-glow-accent: 0 4px 14px rgba(124, 92, 240, 0.35);
+
+  --rtla-blur: 22px;
+  --rtla-saturate: 1.45;
+
+  --rtla-r-xs: 8px;
+  --rtla-r-sm: 11px;
+  --rtla-r-md: 15px;
+  --rtla-r-lg: 18px;
+  --rtla-r-xl: 22px;
+  --rtla-r-pill: 999px;
+
+  --rtla-s-1: 4px;
+  --rtla-s-2: 6px;
+  --rtla-s-3: 8px;
+  --rtla-s-4: 12px;
+  --rtla-s-5: 16px;
+  --rtla-s-6: 20px;
+  --rtla-s-7: 28px;
+
+  --rtla-fs-xs: 10.5px;
+  --rtla-fs-sm: 11.5px;
+  --rtla-fs-md: 12.5px;
+  --rtla-fs-lg: 14px;
+  --rtla-fs-xl: 16.5px;
+
+  --rtla-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --rtla-ease-spring: cubic-bezier(0.34, 1.4, 0.44, 1);
+  --rtla-t-fast: 140ms;
+  --rtla-t-med: 220ms;
+  --rtla-t-slow: 340ms;
+
+  --rtla-ring: 0 0 0 3px rgba(124, 92, 240, 0.28);
+  --rtla-ring-contrast: rgba(124, 92, 240, 0.55);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --rtla-bg-glow-a: rgba(124, 92, 240, 0.2);
+  --rtla-bg-glow-b: rgba(44, 201, 187, 0.1);
+  --rtla-bg-a: #0c0e1e;
+  --rtla-bg-b: #0c0e1e;
+  --rtla-surface-solid: #0c0e1e;
+
+  --rtla-text: #e9eaf6;
+  --rtla-text-2: #a3a7c6;
+  --rtla-text-3: #6c7194;
+  --rtla-on-accent: #ffffff;
+
+  --rtla-surface: rgba(255, 255, 255, 0.055);
+  --rtla-surface-flat: rgba(255, 255, 255, 0.035);
+  --rtla-surface-well: rgba(0, 0, 0, 0.4);
+  --rtla-surface-hover: rgba(255, 255, 255, 0.09);
+  --rtla-border: rgba(255, 255, 255, 0.08);
+  --rtla-border-inner: rgba(255, 255, 255, 0.1);
+  --rtla-divider: rgba(255, 255, 255, 0.06);
+
+  --rtla-well-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+  --rtla-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  --rtla-shadow-pop: 0 14px 40px rgba(0, 0, 0, 0.6);
+  --rtla-shadow-knob: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+  --rtla-ring: 0 0 0 3px rgba(150, 126, 255, 0.32);
+  --rtla-ring-contrast: rgba(150, 126, 255, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --rtla-t-fast: 0ms;
+    --rtla-t-med: 0ms;
+    --rtla-t-slow: 0ms;
+  }
+}

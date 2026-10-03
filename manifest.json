@@ -1,0 +1,79 @@
+{
+  "manifest_version": 3,
+  "name": "RTL Atelier",
+  "version": "1.6.0",
+  "description": "Adaptive, local-first bilingual typography and bidirectional text engine for Persian/Arabic + English on the modern web. Especially tuned for AI and chat platforms.",
+  "author": "RTL Atelier contributors",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "downloads",
+    "favicon"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "RTL Atelier",
+    "default_popup": "src/ui/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "dist/service-worker.bundle.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "dist/content.bundle.js"
+      ],
+      "css": [
+        "src/content/inject.css",
+        "dist/fonts.css"
+      ],
+      "run_at": "document_end",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "commands": {
+    "toggle-site": {
+      "suggested_key": {
+        "default": "Alt+Shift+R"
+      },
+      "description": "Toggle RTL Atelier on the current site"
+    },
+    "toggle-master": {
+      "suggested_key": {
+        "default": "Alt+Shift+T"
+      },
+      "description": "Turn RTL Atelier on or off everywhere"
+    }
+  }
+}
